@@ -56,8 +56,8 @@ jobs:
             "geo2txt" "net/geo2txt"
           sync_package "sbwml/luci-app-mosdns" "v5" \
             "mosdns" "net/mosdns"
-          sync_package "QiuSimons/luci-app-daed" "kix" \
-            "daed" "net/daed"
+          sync_package "immortalwrt/packages" "master" \
+            "net/daed" "net/daed"
           sync_package "QiuSimons/vmlinux-btf" "master" \
             "." "kernel/vmlinux-btf"
 
