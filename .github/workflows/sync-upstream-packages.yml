@@ -48,7 +48,8 @@ jobs:
             fi
 
             mkdir -p "$destination"
-            rsync --archive --delete "$checkout_dir/$source_path/" "$destination/"
+            rsync --archive --delete --exclude='.git/' \
+              "$checkout_dir/$source_path/" "$destination/"
           }
 
           sync_package "sbwml/luci-app-mosdns" "v5" \
@@ -57,6 +58,8 @@ jobs:
             "mosdns" "net/mosdns"
           sync_package "QiuSimons/luci-app-daed" "kix" \
             "daed" "net/daed"
+          sync_package "QiuSimons/vmlinux-btf" "master" \
+            "." "kernel/vmlinux-btf"
 
       - name: Commit and push changes
         shell: bash
@@ -70,6 +73,7 @@ jobs:
             net/geo2txt
             net/mosdns
             net/daed
+            kernel/vmlinux-btf
           )
 
           if git diff --quiet -- "${package_paths[@]}" && \
